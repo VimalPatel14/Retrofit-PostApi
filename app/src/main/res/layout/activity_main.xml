@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rootContainer"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="Movie"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="Post"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/postapi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="Post Api"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="normal" />
+
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:indeterminateTint="@color/black"
+        android:layout_gravity="center" />
+
+</LinearLayout>
