@@ -1,12 +1,11 @@
 package com.vimal.retrofitpostapi.viewmodel.post
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vimal.retrofitpostapi.api.post.PostRepository
 import com.vimal.retrofitpostapi.api.NetworkState
+import com.vimal.retrofitpostapi.api.post.PostRepository
 import com.vimal.retrofitpostapi.model.Posts
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
@@ -31,15 +30,13 @@ class PostViewModel constructor(private val mainRepository: PostRepository) : Vi
 //            Log.d("Thread Inside", Thread.currentThread().name)
             when (val response = mainRepository.getAllMovies()) {
                 is NetworkState.Success -> {
-                        movieList.postValue(response.data)
+                    movieList.postValue(response.data)
                 }
                 is NetworkState.Error -> {
                     if (response.response.code() == 401) {
-                        //movieList.postValue(NetworkState.Error())
-                        Log.e("vml", "Api Error")
+                        onError("Error : 401")
                     } else {
-                        //movieList.postValue(NetworkState.Error)
-                        Log.e("vml", "Api Error")
+                        onError("Error : ")
                     }
                 }
             }

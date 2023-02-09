@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vimal.retrofitpostapi.R
 import com.vimal.retrofitpostapi.adapter.PostAdapter
-import com.vimal.retrofitpostapi.api.post.PostRetrofitService
 import com.vimal.retrofitpostapi.api.post.PostRepository
+import com.vimal.retrofitpostapi.api.post.PostRetrofitService
 import com.vimal.retrofitpostapi.helpers.Helpers
 import com.vimal.retrofitpostapi.interfaces.ItemClickListener
-import com.vimal.retrofitpostapi.viewmodel.post.PostViewModelFactory
 import com.vimal.retrofitpostapi.viewmodel.post.PostViewModel
+import com.vimal.retrofitpostapi.viewmodel.post.PostViewModelFactory
 
 class PostActivity : AppCompatActivity(), ItemClickListener {
 
@@ -49,9 +49,17 @@ class PostActivity : AppCompatActivity(), ItemClickListener {
         ).get(PostViewModel::class.java)
         viewModel.movieList.observe(this) {
             progressDialog.visibility = View.GONE
-            adapter.setMovies(it.data)
+            when (it.status) {
+                0 -> adapter.setMovies(it.data)
+                else -> Toast.makeText(
+                    this@PostActivity, " Error Status",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
         }
         viewModel.errorMessage.observe(this) {
+            progressDialog.visibility = View.GONE
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
         viewModel.loading.observe(this, Observer {
